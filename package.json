@@ -80,6 +80,7 @@
   "devDependencies": {
     "bootstrap": "^3.3.7",
     "bundle-deps": "1.0.0",
+    "glob-cp": "^1.0.4",
     "react": "^15.3.0",
     "react-addons-css-transition-group": "^15.3.0",
     "react-bootstrap": "^0.30.2",

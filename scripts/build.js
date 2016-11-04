@@ -21,6 +21,7 @@ var config = require('../config/webpack.config.prod');
 var paths = require('../config/paths');
 var recursive = require('recursive-readdir');
 var stripAnsi = require('strip-ansi');
+var cp = require('glob-cp');
 
 // Input: /User/dan/app/build/static/js/main.82be8.js
 // Output: /static/js/main.js
@@ -103,6 +104,10 @@ function printFileSizes(stats, previousSizeMap) {
 
 // Create the production build and print the deployment instructions.
 function build(previousSizeMap) {
+ // Copy server
+  console.log('Copying server from ' + paths.server + ' to ' + paths.appBuild);
+  cp.sync( paths.server + '/**/*.*',paths.appBuild + '/**/*.*');
+
   console.log('Creating an optimized production build...');
   webpack(config).run((err, stats) => {
     if (err) {
@@ -161,12 +166,23 @@ function build(previousSizeMap) {
         console.log();
       }
       console.log('The ' + chalk.cyan('build') + ' folder is ready to be deployed.');
-      console.log('You may also serve it locally with a static server:')
+      console.log('You may also serve it locally by running:')
       console.log();
-      console.log('  ' + chalk.cyan('npm') +  ' install -g pushstate-server');
-      console.log('  ' + chalk.cyan('pushstate-server') + ' build');
-      console.log('  ' + chalk.cyan(openCommand) + ' http://localhost:9000');
+      console.log('  ' + chalk.cyan('node') + ' build/index.js');
+      console.log('  ' + chalk.cyan(openCommand) + ' http://localhost:3000');
       console.log();
+
+      console.log('To create a docker image of the application run:');
+      console.log();
+      console.log('  ' + chalk.cyan('docker') +  ' build -t ' + chalk.cyan('appImageName') + ' . ');
+      console.log();
+      console.log('To run a container of the application image:');
+      console.log();
+      console.log('  ' + chalk.cyan('docker') +  ' run -p 3000:3000 -d ' + chalk.cyan('appname') + ' . ');
+      console.log();
+
     }
+
   });
 }
+
