@@ -106,7 +106,7 @@ function printFileSizes(stats, previousSizeMap) {
 function build(previousSizeMap) {
  // Copy server
   console.log('Copying server from ' + paths.server + ' to ' + paths.appBuild);
-  cp.sync( paths.server + '/**/*.*',paths.appBuild + '/**/*.*');
+  cp.sync( paths.server + '/**/*',paths.appBuild + '/**/*');
 
   console.log('Creating an optimized production build...');
   webpack(config).run((err, stats) => {
@@ -168,7 +168,9 @@ function build(previousSizeMap) {
       console.log('The ' + chalk.cyan('build') + ' folder is ready to be deployed.');
       console.log('You may also serve it locally by running:')
       console.log();
-      console.log('  ' + chalk.cyan('node') + ' build/index.js');
+      console.log('  ' + chalk.cyan('cd') + ' build ');
+      console.log('  ' + chalk.cyan('npm') + ' i ');
+      console.log('  ' + chalk.cyan('node') + ' index.js');
       console.log('  ' + chalk.cyan(openCommand) + ' http://localhost:3000');
       console.log();
 
