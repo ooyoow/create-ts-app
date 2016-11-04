@@ -1,6 +1,6 @@
 {
   "name": "tsapp-scripts",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "Configuration and scripts for Create react/redux typescript App .",
   "repository": "https://github.com/vgmr/create-ts-app/",
   "license": "BSD-3-Clause",
