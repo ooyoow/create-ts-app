@@ -180,7 +180,7 @@ function build(previousSizeMap) {
       console.log();
       console.log('To run a container of the application image:');
       console.log();
-      console.log('  ' + chalk.cyan('docker') +  ' run -p 3000:3000 -d ' + chalk.cyan('appname') + ' . ');
+      console.log('  ' + chalk.cyan('docker') +  ' run -p 3000:3000 -d ' + chalk.cyan('appname') );
       console.log();
 
     }
