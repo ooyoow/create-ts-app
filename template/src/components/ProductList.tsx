@@ -1,14 +1,22 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import * as Redux from 'redux';
-import * as Actions from '../../actions';
-import {IProductsModel, IAppState} from '../../reducers';
-import InputText from '../InputText';
-import {Error} from '../Error';
+import * as Actions from '../actions';
+import {IProductsModel, IAppState} from '../reducers';
+import InputText from './pure/InputText';
+import {Error} from './pure/Error';
 import {Grid, ListGroup, ListGroupItem, Glyphicon, Button} from 'react-bootstrap';
-export interface ProductListProps {
-    products?: IProductsModel
-    dispatch?: Redux.Dispatch<any>
+
+
+interface IPropsFromState {
+    products: IProductsModel
+}
+interface IPropsFromDispatch {
+    dispatch: Redux.Dispatch<any>
+}
+
+export interface ProductListProps extends IPropsFromState, IPropsFromDispatch {
+
 }
 
 const ProductList: React.StatelessComponent<ProductListProps> = (props) => {
@@ -33,7 +41,8 @@ const ProductList: React.StatelessComponent<ProductListProps> = (props) => {
     </Grid>
 }
 
-const mapStateToProps = (s: IAppState) => {
+
+const mapStateToProps = (s: IAppState): IPropsFromState => {
     return {
         products: s.products
     }

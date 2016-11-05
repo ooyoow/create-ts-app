@@ -23,3 +23,12 @@
 * removed linter 
 * fixed scss configuration
 * configured babel for production
+
+
+## 0.1.21 (November 4, 2016)
+
+* added server
+
+## 0.1.22 (November 5, 2016)
+
+* removed typings, use @types

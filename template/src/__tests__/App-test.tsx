@@ -1,7 +1,7 @@
 jest.mock('react-dom'); // To prevent issue of duplicate env. injection
 
 import * as React from 'react';
-import App from '../components/containers/App';
+import App from '../components/App';
 
 let renderer =require('react-test-renderer'); //no typings available.
 

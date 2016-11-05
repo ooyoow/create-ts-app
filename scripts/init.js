@@ -26,7 +26,10 @@ module.exports = function (appPath, appName, verbose, originalDirectory) {
     'react-addons-css-transition-group', 'react-bootstrap', 'bootstrap'].forEach(function (key) {
       appPackage.dependencies[key] = ownPackage.devDependencies[key];
     });
-  ['react-test-renderer'].forEach(function (key) {
+
+  //Copy react-test-renderer and @types dep as dev dep.
+  var typesDep = Object.keys(ownPackage.devDependencies).filter(k=>k.indexOf('@types/')>=0);
+  ['react-test-renderer'].concat(typesDep).forEach(function (key) {
     appPackage.devDependencies[key] = ownPackage.devDependencies[key];
   });
 

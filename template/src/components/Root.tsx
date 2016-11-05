@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router'
 import thunk from 'redux-thunk';
 
-import reducer,{AppContext} from '../../reducers';
+import reducer,{AppContext} from '../reducers';
 import App from './App';
 import ProductList from './ProductList';
 import ListItems from './ListItems';

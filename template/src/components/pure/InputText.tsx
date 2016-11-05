@@ -11,7 +11,7 @@ export interface InputTextProps {
 const InputText = (props:InputTextProps)  =>{
     let input:any;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e) => {
         if (e.keyCode == 13 && input.value) {
             e.preventDefault();
             props.onChange(input.value);

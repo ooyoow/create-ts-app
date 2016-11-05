@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl, Button} from 'react-bootstrap';
-import {Link, withRouter, IRouter} from 'react-router';
-let logo = require('../../logo.svg');
+import {Link, withRouter,browserHistory} from 'react-router';
+let logo = require('../logo.svg');
 
 const menu = [
   {to:'/',label:'HOME'},
@@ -33,13 +33,13 @@ export default App;
 
 // NAVLinks, wrap navbar item and router links and manage active state.
 
-class UnlinkedNavLink extends React.Component<{ menu: {to: string, label: string}[], router?: IRouter, manageActive?:boolean }, { active: number }>{
+class UnlinkedNavLink extends React.Component<{ menu: {to: string, label: string}[],  manageActive?:boolean }, { active: number }>{
   constructor(props) {
     super(props);
     this.state = { active:null };
   }
   private onClickHandler = (i:number,to: string) => {
-    this.props.router.push(to);
+    browserHistory.push(to);
     this.setState({
       active:i
     });

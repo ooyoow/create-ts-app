@@ -1,4 +1,4 @@
-App = require('../components/containers/App');
+App = require('../components/App');
 
 describe("Using Javascript!", () => {
     it("Very simple test", () => {

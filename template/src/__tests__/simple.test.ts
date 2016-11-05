@@ -1,4 +1,4 @@
-import App from '../components/containers/App';
+import App from '../components/App';
 
 describe("Using Typescript", ()=>{
     it("Very Simple test", ()=>{
