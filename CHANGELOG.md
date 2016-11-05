@@ -29,6 +29,7 @@
 
 * added server
 
-## 0.1.22 (November 5, 2016)
+## 0.1.23 (November 5, 2016)
 
 * removed typings, use @types
+* fixed server (create config.json)
