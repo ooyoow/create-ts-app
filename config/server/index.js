@@ -15,6 +15,11 @@ app.options('*', cors());
 // serve static assets normally
 app.use(express.static(__dirname))
 
+// handle config.json reuqest
+app.get('/config.json', function (request, response) {
+  response.sendFile(path.resolve(__dirname, 'config.json'))
+})
+
 // handle every other route with index.html, which will contain
 // a script tag to your application's JavaScript file(s).
 app.get('*', function (request, response) {
@@ -30,4 +35,4 @@ const envs = Object.keys(process.env)
   .filter(k => k.match('^REACT_APP'))
   .reduce((p, c) => { p[c] = process.env[c]; return p; }, {});
 fs.writeFile(path.resolve(__dirname, 'config.json'), JSON.stringify(envs, null, 2));
-console.log('config.json created', JSON.stringify(envs, null, 2));
+console.log('config.json created: ', JSON.stringify(envs, null, 2));
