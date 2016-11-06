@@ -29,6 +29,7 @@ app.listen(port, function () {
 const envs = Object.keys(process.env)
   .filter(k => k.match('^REACT_APP'))
   .reduce((p, c) => { p += 'var ' + c + '="' + process.env[c] + '";\n'; return p; }, "");
-fs.writeFile(path.resolve(__dirname, 'config.js'), envs);
-console.log('config.js created');
-console.log(envs);
+fs.writeFile(path.resolve(__dirname, 'config.js'), envs, () => {
+  console.log('config.js created');
+  console.log(envs);
+});

@@ -34,6 +34,6 @@
 * removed typings, use @types
 * fixed server (create config.json)
 
-## 0.1.24 (November 6, 2016)
+## 0.1.25 (November 6, 2016)
 
 * create config.js instead of config.json 
