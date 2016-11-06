@@ -10,7 +10,6 @@ function MyPlugin(options) {
 MyPlugin.prototype.apply = function(compiler) {
   // ...
   compiler.plugin('compilation', function(compilation) {
-    console.log('The compiler is starting a new compilation...');
 
     compilation.plugin('html-webpack-plugin-before-html-processing', function(htmlPluginData, callback) {
       var value = '<script language="javascript" src="config.js"></script>';
