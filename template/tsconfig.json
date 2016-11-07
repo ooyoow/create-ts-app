@@ -5,7 +5,10 @@
         "jsx": "react",
         "sourceMap": true,
         "types": [
-            "node"
+            "node",
+            "expect",
+            "jest",
+            "whatwg-fetch"
         ]
     },
     "files": [
