@@ -1,0 +1,4 @@
+{
+    "REACT_APP_SERVICE_URI":"http://localhost:5000",
+    "REACT_APP_SERVICE_API_PATTERN":"api/v0"
+}

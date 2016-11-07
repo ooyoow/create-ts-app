@@ -6,9 +6,16 @@ import Root from './components/Root';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.scss';
 
+import {loadConfiguration} from './configLoader';
 
 const store = configureStore();
-render(
-    <Root store={store}/>,
-    document.getElementById("root")
-);
+
+render(<div>waiting for configuration</div>, document.getElementById("root"));
+
+loadConfiguration('./config.json').then(r=>{
+    render(
+        <Root store={store} />,
+        document.getElementById("root")
+    );
+});
+

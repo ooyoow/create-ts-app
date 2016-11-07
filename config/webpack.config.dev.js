@@ -11,7 +11,6 @@ var path = require('path');
 var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var StaticConfigPlugin = require('./staticConfigPlugin');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var WatchMissingNodeModulesPlugin = require('../scripts/utils/WatchMissingNodeModulesPlugin');
 var paths = require('./paths');
@@ -181,8 +180,6 @@ module.exports = {
       inject: true,
       template: paths.appHtml,
     }),
-    // inject config.js script
-    new StaticConfigPlugin({}),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'development') { ... }. See `env.js`.
     new webpack.DefinePlugin(env),
