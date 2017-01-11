@@ -104,9 +104,20 @@ function printFileSizes(stats, previousSizeMap) {
 
 // Create the production build and print the deployment instructions.
 function build(previousSizeMap) {
- // Copy server
+  // Copy server
   console.log('Copying server from ' + paths.server + ' to ' + paths.appBuild);
-  cp.sync( paths.server + '/**/*',paths.appBuild + '/**/*');
+  cp.sync(paths.server + '/**/*', paths.appBuild + '/**/*');
+
+  //fix name and version in packag.json
+  var appPackage =require(paths.appPackageJson);
+  var buildPackage = require(paths.appBuild + '/package.json');
+  buildPackage.version = appPackage.version;
+  buildPackage.name = appPackage.name;
+  buildPackage.author = appPackage.author;
+  buildPackage.description = appPackage.description;
+  buildPackage.keyword = appPackage.keyword;
+  buildPackage.license = appPackage.license;
+  fs.writeFileSync(paths.appBuild + '/package.json',JSON.stringify(buildPackage,null,2));
 
   console.log('Creating an optimized production build...');
   webpack(config).run((err, stats) => {
@@ -130,7 +141,7 @@ function build(previousSizeMap) {
     if (homepagePath && homepagePath.indexOf('.github.io/') !== -1) {
       // "homepage": "http://user.github.io/project"
       console.log('The project was built assuming it is hosted at ' + chalk.green(publicPath) + '.');
-      console.log('You can control this with the ' + chalk.green('homepage') + ' field in your '  + chalk.cyan('package.json') + '.');
+      console.log('You can control this with the ' + chalk.green('homepage') + ' field in your ' + chalk.cyan('package.json') + '.');
       console.log();
       console.log('The ' + chalk.cyan('build') + ' folder is ready to be deployed.');
       console.log('To publish it at ' + chalk.green(homepagePath) + ', run:');
@@ -146,7 +157,7 @@ function build(previousSizeMap) {
     } else if (publicPath !== '/') {
       // "homepage": "http://mywebsite.com/project"
       console.log('The project was built assuming it is hosted at ' + chalk.green(publicPath) + '.');
-      console.log('You can control this with the ' + chalk.green('homepage') + ' field in your '  + chalk.cyan('package.json') + '.');
+      console.log('You can control this with the ' + chalk.green('homepage') + ' field in your ' + chalk.cyan('package.json') + '.');
       console.log();
       console.log('The ' + chalk.cyan('build') + ' folder is ready to be deployed.');
       console.log();
@@ -155,11 +166,11 @@ function build(previousSizeMap) {
       console.log('The project was built assuming it is hosted at the server root.');
       if (homepagePath) {
         // "homepage": "http://mywebsite.com"
-        console.log('You can control this with the ' + chalk.green('homepage') + ' field in your '  + chalk.cyan('package.json') + '.');
+        console.log('You can control this with the ' + chalk.green('homepage') + ' field in your ' + chalk.cyan('package.json') + '.');
         console.log();
       } else {
         // no homepage
-        console.log('To override this, specify the ' + chalk.green('homepage') + ' in your '  + chalk.cyan('package.json') + '.');
+        console.log('To override this, specify the ' + chalk.green('homepage') + ' in your ' + chalk.cyan('package.json') + '.');
         console.log('For example, add this to build it for GitHub Pages:')
         console.log();
         console.log('  ' + chalk.green('"homepage"') + chalk.cyan(': ') + chalk.green('"http://myname.github.io/myapp"') + chalk.cyan(','));
@@ -176,11 +187,11 @@ function build(previousSizeMap) {
 
       console.log('To create a docker image of the application run:');
       console.log();
-      console.log('  ' + chalk.cyan('docker') +  ' build -t ' + chalk.cyan('appImageName') + ' . ');
+      console.log('  ' + chalk.cyan('docker') + ' build -t ' + chalk.cyan('appImageName') + ' . ');
       console.log();
       console.log('To run a container of the application image:');
       console.log();
-      console.log('  ' + chalk.cyan('docker') +  ' run -p 3000:3000 -d ' + chalk.cyan('appname') );
+      console.log('  ' + chalk.cyan('docker') + ' run -p 3000:3000 -d ' + chalk.cyan('appname'));
       console.log();
 
     }
