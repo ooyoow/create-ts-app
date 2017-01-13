@@ -21,10 +21,10 @@ var config = require('../config/webpack.config.prod');
 var paths = require('../config/paths');
 var recursive = require('recursive-readdir');
 var stripAnsi = require('strip-ansi');
-var cp = require('glob-cp');
+var fs = require('fs-extra');
 
 // Input: /User/dan/app/build/static/js/main.82be8.js
-// Output: /static/js/main.js
+// Output: /static/js/main.js ()
 function removeFileNameHash(fileName) {
   return fileName
     .replace(paths.appBuild, '')
@@ -106,18 +106,18 @@ function printFileSizes(stats, previousSizeMap) {
 function build(previousSizeMap) {
   // Copy server
   console.log('Copying server from ' + paths.server + ' to ' + paths.appBuild);
-  cp.sync(paths.server + '/**/*', paths.appBuild + '/**/*');
+  fs.copySync(paths.server ,paths.appBuild);
 
   //fix name and version in packag.json
   var appPackage =require(paths.appPackageJson);
-  var buildPackage = require(paths.appBuild + '/package.json');
+  var buildPackage = require(paths.buildPackageJson);
   buildPackage.version = appPackage.version;
   buildPackage.name = appPackage.name;
   buildPackage.author = appPackage.author;
   buildPackage.description = appPackage.description;
   buildPackage.keyword = appPackage.keyword;
   buildPackage.license = appPackage.license;
-  fs.writeFileSync(paths.appBuild + '/package.json',JSON.stringify(buildPackage,null,2));
+  fs.writeFileSync(paths.buildPackageJson,JSON.stringify(buildPackage,null,2));
 
   console.log('Creating an optimized production build...');
   webpack(config).run((err, stats) => {

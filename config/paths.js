@@ -37,6 +37,7 @@ if (isInCreateReactAppSource) {
     appBuild: resolveOwn('../build'),
     appHtml: resolveOwn('../template/index.html'),
     appPackageJson: resolveOwn('../package.json'),
+    buildPackageJson: resolveOwn('../build/package.json'),
     appSrc: resolveOwn('../template/src'),
     appNodeModules: resolveOwn('../node_modules'),
     ownNodeModules: resolveOwn('../node_modules'),
@@ -48,6 +49,7 @@ if (isInCreateReactAppSource) {
     appBuild: resolveApp('build'),
     appHtml: resolveApp('index.html'),
     appPackageJson: resolveApp('package.json'),
+    buildPackageJson: resolveApp('build/package.json'),
     appSrc: resolveApp('src'),
     appNodeModules: resolveApp('node_modules'),
     // this is empty with npm3 but node resolution searches higher anyway:
@@ -60,6 +62,7 @@ if (isInCreateReactAppSource) {
     appBuild: resolveApp('build'),
     appHtml: resolveApp('index.html'),
     appPackageJson: resolveApp('package.json'),
+    buildPackageJson: resolveApp('build/package.json'),
     appSrc: resolveApp('src'),
     appNodeModules: resolveApp('node_modules'),
     ownNodeModules: resolveApp('node_modules'),
