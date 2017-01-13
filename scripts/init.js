@@ -23,7 +23,7 @@ module.exports = function (appPath, appName, verbose, originalDirectory) {
   appPackage.dependencies = appPackage.dependencies || {};
   appPackage.devDependencies = appPackage.devDependencies || {};
   ['react', 'react-dom', 'react-redux', 'react-router', 'redux', 'redux-thunk', 'redux-helper', 'node-sass',
-    'react-addons-css-transition-group', 'react-bootstrap', 'bootstrap'].forEach(function (key) {
+    'react-addons-css-transition-group', 'react-bootstrap', 'bootstrap','typescript'].forEach(function (key) {
       appPackage.dependencies[key] = ownPackage.devDependencies[key];
     });
 
@@ -105,7 +105,6 @@ module.exports = function (appPath, appName, verbose, originalDirectory) {
     console.log('We suggest that you begin by typing:');
     console.log();
     console.log('  cd', cdpath);
-    console.log('  npm link typescript');
     console.log('  npm start');
     if (readmeExists) {
       console.log();

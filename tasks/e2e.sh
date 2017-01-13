@@ -12,7 +12,7 @@ cd "$(dirname "$0")"
 function cleanup {
   echo 'Cleaning up.'
   cd $initial_path
-  rm ../template/src/__tests__/__snapshots__/App-test.js.snap
+  rm ../template/src/__tests__/__snapshots__/App-test.tsx.snap
   rm -rf $temp_cli_path $temp_app_path
 }
 
@@ -54,7 +54,7 @@ npm install
 scripts_path=$PWD/`npm pack`
 
 # lint
-./node_modules/.bin/eslint --ignore-path .gitignore ./
+# ./node_modules/.bin/eslint --ignore-path .gitignore ./
 
 # Test local start command
 npm start -- --smoke-test
@@ -66,12 +66,12 @@ npm run build
 test -e build/*.html
 test -e build/static/js/*.js
 test -e build/static/css/*.css
-test -e build/static/media/*.svg
+# test -e build/static/media/*.svg
 test -e build/favicon.ico
 
 # Run tests
 npm run test
-test -e template/src/__tests__/__snapshots__/App-test.js.snap
+test -e template/src/__tests__/__snapshots__/App-test.tsx.snap
 
 # Pack CLI
 cd global-cli
@@ -96,12 +96,12 @@ npm run build
 test -e build/*.html
 test -e build/static/js/*.js
 test -e build/static/css/*.css
-test -e build/static/media/*.svg
+# test -e build/static/media/*.svg
 test -e build/favicon.ico
 
 # Run tests
 npm run test
-test -e src/__tests__/__snapshots__/App-test.js.snap
+test -e src/__tests__/__snapshots__/App-test.tsx.snap
 
 # Test the server
 npm start -- --smoke-test
@@ -114,12 +114,12 @@ npm run build
 test -e build/*.html
 test -e build/static/js/*.js
 test -e build/static/css/*.css
-test -e build/static/media/*.svg
+# test -e build/static/media/*.svg
 test -e build/favicon.ico
 
 # Run tests
 npm run test
-test -e src/__tests__/__snapshots__/App-test.js.snap
+test -e src/__tests__/__snapshots__/App-test.tsx.snap
 
 # Test the server
 npm start -- --smoke-test
